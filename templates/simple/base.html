@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      {%load staticfiles%}
+      <meta charset="utf-8">
+      <title>{{title}}</title>
+      <meta name="keywords" content="潘晓光的个人博客" />
+      <meta name="description" content="潘晓光个人博客，这个人很懒，什么都不愿意写。" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+      <link href="{%static "css/animate.css" %}" rel="stylesheet">
+      <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+      <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   
+   <style>
+   body{ 
+      background:#ffffff  repeat center top;
+   };
+</style>
+   </head>
+   <body>
+      <nav class="navbar navbar-fixed-top navbar-default" role="navigation">
+         <div class="container-fluid">
+            <div class="navbar-header">
+               <a class="navbar-brand" href="#">菜鸟驿站</a>
+            </div>
+            <div class="col-md-offset-8">
+               <ul class="nav navbar-nav">
+                  <li><a href="{% url "index" 1  %}">网站首页</a></li>
+                  <li><a href="{% url "share" %}">泼墨人生</a></li>
+                  <li><a href="#" >查询结果</a></li>
+                  <li><a href="{% url "about" %}">关于我</a></li>
+                  <li><a href="#" title="Popover title" data-container="body" data-toggle="popover" data-placement="bottom" data-content="兄弟，老哥不想让你留言！">留言</a></li>
+                  {% block haha %}
+                  {% endblock %}
+               </ul>
+              <script>
+                  $(function (){
+                        $("[data-toggle='popover']").popover();
+                   });
+              </script>
+            </div>
+         </div>
+      </nav>
+      {% block content %}
+      {% endblock %}
+ </body>
+<hr>
+ <footer>
+   <div class="container">
+      <div class="row">
+      <div class="col-md-6 col-md-offset-5">
+  <p> <a href="mailto:panxiaoguang@genomics.cn" target="_blank">潘晓光</a>自豪的全栈搭建</p>
+</div>
+</div>
+</div>
+</footer>
+</html>     

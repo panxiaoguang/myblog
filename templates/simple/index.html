@@ -1,0 +1,138 @@
+{% extends "base.html" %}{% load staticfiles %}{% block content %}
+   <div class="container-fluid" style="padding-top: 10%;">
+      <div class="row">
+         <div class="col-md-3 col-md-offset-1">
+            <div class="panel panel-primary">
+               <div class="panel-heading">
+                  <h3 class="panel-title">我这个人</h3>
+               </div>
+               <div class="panel-body">
+                  <div class="row">
+                     <div class="col-md-6" id="haha">
+                        <img src="{% static "images/4.jpg" %}" class="img-responsive">
+                     <script>
+                        $("img").mouseenter(function(){
+                           $(this).addClass('animated pulse');
+                        }).mouseleave(function(){
+                           $(this).removeClass('animated pulse');
+                        });
+                     </script>
+                     </div>
+                     <div class="col-md-6">
+                        <p> <b>潘晓光</b>，一个90后野路子！。主攻生物信息学，一边工作一边积累经验，对全栈搭建感兴趣，在这里分享一下个人心得。</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+               <div class="panel panel-success">
+                  <div class="panel-heading">
+                     <h3 class="panel-title">搜一搜</h3>
+                  </div>
+                  <div class="panel-body">
+                     <form class="form-inline" role="form" action="{% url "search" %}"  method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                           <label for="firstname" class="control-label sr-only">文章内容</label>
+                           <div class="col-md-10">
+                              <input type="text" class="form-control" id="keyboard" name="keyboard" placeholder="请输入你要查找的关键词">   
+                           </div> 
+                        </div>
+                        <button type="submit" class="btn btn-default">查找</button>
+                     </form>
+                  </div>
+               </div>
+               <div class="panel panel-info">
+                  <div class="panel-heading">
+                     <h3 class="panel-title">文章分类</h3>
+                  </div>
+                  <div class="panel-body">
+                     <ul>
+                        <li><a href="{% url "biancheng" %}">编程</a>&nbsp;&nbsp;<span class="badge">{{count1}}</span></li>
+                        <li><a href="{% url "suibi" %}">随笔</a>&nbsp;&nbsp;<span class="badge">{{count2}}</span></li>
+                        <li><a href="{% url "biji" %}">笔记</a>&nbsp;&nbsp;<span class="badge">{{count3}}</span></li>
+                        <li><a href="{% url "ganxiang" %}">感想</a>&nbsp;&nbsp;<span class="badge">{{count4}}</span></li>
+                     </ul>
+                  </div>
+               </div>
+               <div class="panel panel-warning">
+                  <div class="panel-heading">
+                     <h3 class="panel-title">站长推荐</h3>
+                  </div>
+                  <div class="panel-body">
+                     <ul>
+                        {% for blog1 in blog %}
+                        <li><a href="{% url "info" blog1.id %}">{{blog1.title}}</a></li>
+                        {% endfor %}
+                     </ul>                       
+                  </div>
+               </div>
+               <div class="panel panel-danger">
+                  <div class="panel-heading">
+                     <h3 class="panel-title">友情链接</h3>
+                  </div>
+                  <div class="panel-body">
+                     <ul>
+                        <li><a href="https://github.com/panxiaoguang" target="_blank">潘晓光个人博客</a></li>
+                        <li><a href="http://hongguangblog.cn">潘晓光博客</a></li> 
+                     </ul>                   
+                  </div>
+               </div>
+               <div class="panel panel-info">
+                  <div class="panel-heading">
+                     <h3 class="panel-title">关注我，么么哒</h3>
+                  </div>
+                  <div class="panel-body">
+                     <img src="{% static "images/wx.jpg" %}" class="img-thumbnail">                     
+                     <script>
+                           $("img").mouseenter(function(){
+                              $(this).addClass('animated pulse');
+                           }).mouseleave(function(){
+                              $(this).removeClass('animated pulse');
+                           });
+                        </script>
+                  </div>
+               </div>
+         </div>
+         <div class="col-md-7">
+          {% for blog1 in blog %}
+            <div class="well ">
+           <div class="page-header">
+               <div class="media">
+                  <div class="media-body">
+                     <h2><a href="{% url "info" blog1.id %}">{{blog1.title}}</a></h2>
+                  </div>
+                  <div class="media-right">
+                     <img src="{{MEDIA_URL}}{{blog1.image}}" class="media-object" style="width:180px">
+                     <script>
+                           $("img").mouseenter(function(){
+                              $(this).addClass('animated pulse');
+                           }).mouseleave(function(){
+                              $(this).removeClass('animated pulse');
+                           });
+                        </script>
+                  </div>
+               </div>
+            </div>
+               <p>{{blog1.content|striptags|truncatechars:300}}</p> 
+            </div>
+            {% endfor %}
+            <div class="row">
+               <div class="col-md-6 col-md-offset-3">
+            <ul class="pagination pagination-lg">
+            {% if page_obj.has_previous %}
+               <li><a href="{% url "index" page_obj.previous_page_number %}">&laquo;</a></li>
+            {% endif %}
+            {% for num in page_obj.paginator.page_range %}
+            
+               <li><a href="{% url "index" num %}">{{num}}</a></li>
+            {% endfor %}
+            {% if page_obj.has_next %}
+               <li><a href="{% url "index" page_obj.next_page_number %}">&raquo;</a></li>
+            {% endif %}
+            </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+{% endblock %}

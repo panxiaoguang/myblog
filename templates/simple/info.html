@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+{% block haha %}
+<li><a href="{% url "info" blog.id %}">内容页</a></li>
+{% endblock %}
+{% block content %}{% load staticfiles %}
+
+      <div class="container-fluid" style="padding-top: 5%;">
+      <div class="row">
+         <div class="col-md-3 col-md-offset-1">
+                <div class="panel panel-success">
+                  <div class="panel-heading">
+                     <h3 class="panel-title">搜一搜</h3>
+                  </div>
+                  <div class="panel-body">
+                     <form class="form-inline" role="form" action="{% url "search" %}"  method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                           <label for="firstname" class="group-label sr-only">文章内容</label>
+                           <div class="col-md-10">
+                              <input type="text" class="form-control" id="keyboard" name="keyboard" placeholder="请输入你要查找的关键词">   
+                           </div> 
+                        </div>
+                        <button type="submit" class="btn btn-default">查找</button>
+                     </form>
+                  </div>
+               </div>              
+               <div class="panel panel-danger">
+                  <div class="panel-heading">
+                     <h3 class="panel-title">友情链接</h3>
+                  </div>
+                  <div class="panel-body">
+                     <ul>
+                        <li><a href="https://github.com/panxiaoguang" target="_blank">潘晓光个人博客</a></li>
+                        <li><a href="http://hongguangblog.cn">潘晓光博客</a></li> 
+                     </ul>                   
+                  </div>
+               </div>
+               <div class="panel panel-info">
+                  <div class="panel-heading">
+                     <h3 class="panel-title">关注我，么么哒</h3>
+                  </div>
+                  <div class="panel-body">
+                     <img src="{% static "images/wx.jpg" %}" class="img-thumbnail">                     
+                     <script>
+                           $("img").mouseenter(function(){
+                              $(this).addClass('animated pulse');
+                           }).mouseleave(function(){
+                              $(this).removeClass('animated pulse');
+                           });
+                        </script>
+                  </div>
+               </div>
+         </div>
+         <div class="col-md-7 bg-warning" >
+           <div class="page-header">
+               <div class="media">
+                  <div class="media-body">
+                     <h2>{{blog.title}}</h2>
+                  </div>
+                  <div class="media-right">
+                     <img src="{{MEDIA_URL}}{{blog.image}}" class="media-object" style="width:180px">
+                     <script>
+                           $("img").mouseenter(function(){
+                              $(this).addClass('animated pulse');
+                           }).mouseleave(function(){
+                              $(this).removeClass('animated pulse');
+                           });
+                        </script>
+                  </div>
+               </div>
+            </div>
+            <div class="bloginfo">
+               <ul class="list-inline">
+                  <li class="author">作者：<a href="/">{{blog.author}}</a></li>
+                  <li class="lmname"><a href="/">{{blog.category}}</a></li>
+                  <li class="timer">时间：{{blog.pub}}</li>
+                  <li class="view">{{blog.view}}人已阅读</li>
+               {% for tag in blog.tag.all %}
+                  <li class="tag">{{tag.name}}</li>
+               {% endfor %}
+               </ul>
+               <p>{{blog.content|safe}}</p>
+            </div>
+            <div class="row">
+               <form action='' method="POST" class="form-horizontal">
+                  {% csrf_token %}
+                  <div class="form-group">
+                        <label for="id_name" class="col-sm-1 control-label">读者</label>
+                     <div class="col-sm-11">
+                     {{ form.name}}
+                  </div>
+                  </div>
+                  <div class="form-group">
+                        <label for="id_email" class="col-sm-1 control-label">邮箱</label>
+                     <div class="col-sm-11">
+                        {{ form.email}}
+                     </div>
+                     </div>
+                     <div class="form-group">
+                           <label for="id_content" class="col-sm-1 control-label">评论</label>
+                        <div class="col-sm-11">
+                           {{ form.content}}
+                        </div>
+                        </div>
+                        <div class="col-sm-offset-1 col-sm-11">
+                        <input type="submit" value="提交" class="btn btn-default" role="button">
+                        </div>
+               </form>
+            </div>
+            <div class="row">
+               <h3>过往的评论：</h3>
+               <ul class="list-group">
+               {% for com in comment %}
+               <li class="list-group-item">{{com.name}}:&nbsp;&nbsp;{{com.content}}</li>
+               {% endfor %}
+            </ul>
+            </div>
+            <div class="row">
+               <div class="col-md-6 col-md-offset-3">
+            <ul class="pagination pagination-lg">
+               <li><a href="#">&laquo;</a></li>
+               <li><a href="#">1</a></li>
+               <li><a href="#">2</a></li>
+               <li><a href="#">3</a></li>
+               <li><a href="#">4</a></li>
+               <li><a href="#">5</a></li>
+               <li><a href="#">&raquo;</a></li>
+            </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+{% endblock %}

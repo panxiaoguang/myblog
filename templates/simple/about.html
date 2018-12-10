@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{%block content%}{% load staticfiles %}
+   <div class="container-fluid" style="padding-top: 5%;">
+      <div class="row">
+         <div class="col-md-3 col-md-offset-1">
+            <div class="panel panel-primary">
+               <div class="panel-heading">
+                  <h3 class="panel-title">我这个人</h3>
+               </div>
+               <div class="panel-body">
+                  <div class="row">
+                     <div class="col-md-6">
+                        <img src="{% static "images/4.jpg"%}" class="img-responsive">
+                     </div>
+                     <div class="col-md-6">
+                        <p> <b>潘晓光</b>，一个90后野路子！。主攻生物信息学，一边工作一边积累经验，对全栈搭建感兴趣，在这里分享一下个人心得。</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+               <div class="panel panel-info">
+                  <div class="panel-heading">
+                     <h3 class="panel-title">文章分类</h3>
+                  </div>
+                  <div class="panel-body">
+                     <ul>
+                        <li><a href="#">编程</a>&nbsp;&nbsp;<span class="badge">50</span></li>
+                        <li><a href="#">随笔</a>&nbsp;&nbsp;<span class="badge">50</span></li>
+                        <li><a href="#">笔记</a>&nbsp;&nbsp;<span class="badge">50</span></li>
+                        <li><a href="#">感想</a>&nbsp;&nbsp;<span class="badge">50</span></li>
+                     </ul>
+                  </div>
+               </div>
+               <div class="panel panel-warning">
+                  <div class="panel-heading">
+                     <h3 class="panel-title">站长推荐</h3>
+                  </div>
+                  <div class="panel-body">
+                     <ul>
+                        <li><a href="#">编程</a></li>
+                        <li><a href="#">随笔</a></li>
+                        <li><a href="#">笔记</a></li>
+                        <li><a href="#">感想</a></li>
+                     </ul>                       
+                  </div>
+               </div>
+               <div class="panel panel-danger">
+                  <div class="panel-heading">
+                     <h3 class="panel-title">友情链接</h3>
+                  </div>
+                  <div class="panel-body">
+                     <ul>
+                        <li><a href="https://github.com/panxiaoguang" target="_blank">潘晓光个人博客</a></li>
+                        <li><a href="http://hongguangblog.cn">潘晓光博客</a></li> 
+
+                     </ul>                   
+                  </div>
+               </div>
+               <div class="panel panel-info">
+                  <div class="panel-heading">
+                     <h3 class="panel-title">关注我，么么哒</h3>
+                  </div>
+                  <div class="panel-body">
+                     <img src="{% static "images/wx.jpg"%}" class="img-thumbnail">                     
+                  </div>
+               </div>
+         </div>
+         <div class="col-md-7 bg-warning">
+            <div class="page-header">
+               <div class="media">
+                  <div class="media-body">
+                     <h2>关于我</a></h2>
+                  </div>
+                  <div class="media-right">
+                     <img src="{% static "images/1.jpg" %}" class="media-object" style="width:180px">
+                  </div>
+               </div>
+            </div>
+            <div class="bloginfo">
+               <p>还没想好，想好了在写吧！！</p> 
+            </div>
+         </div>
+      </div>
+   </div>
+{% endblock %}

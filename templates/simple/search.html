@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+{% load staticfiles %}
+  <div class="container" style="padding-top: 5%;">
+      <div class="row">
+         <div class="col-md-10 col-md-offset-1">       
+    {% for blog in SearchResult %}
+    {% if blog %}
+    <p>共找到{{ResultAmount}}篇文章</p>
+    <div class="well ">
+           <div class="page-header">
+               <div class="media">
+                  <div class="media-body">
+                    <h2><a href="{% url "info" blog.id %}">{{blog.title}}</a></h2>
+                  </div>
+                  <div class="media-right">
+                     <img src="{{MEDIA_URL}}{{blog.image}}" class="media-object" style="width:180px">
+                  </div>
+               </div>
+            </div>
+               <p>{{blog.content|slice:":1000"|safe}}</p> 
+            </div>
+                <div class="row">
+               <div class="col-md-6 col-md-offset-3">
+            <ul class="pagination pagination-lg">
+               <li><a href="#">&laquo;</a></li>
+               <li><a href="#">1</a></li>
+               <li><a href="#">2</a></li>
+               <li><a href="#">3</a></li>
+               <li><a href="#">4</a></li>
+               <li><a href="#">5</a></li>
+               <li><a href="#">&raquo;</a></li>
+            </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+  {% else %}
+  <p>{{SearchStatus}},您所查询的文章不存在哦！</p>
+  {% endif %}
+  {% endfor %}
+  </div>
+</article>
+{% endblock %}

@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% block content %}
+{% load staticfiles %}      
+      <div class="container" style="padding-top: 5%;">
+      <div class="row">
+         <script>
+            $("div").addClass('animated fadeInDown');
+         </script>
+         <div class="col-md-3" id="div1">
+                     {% for biancheng in blog1 %}
+                     <div class="panel-heading">
+                        <div class="panel panel-default">
+                        <ul id ="div1" class="list-unstyled">
+                            <li><img src="{{MEDIA_URL}}{{biancheng.image}}" class="img-responsive img-rounded center-block" ></li>
+                            <script>
+                                 $("img").mouseenter(function(){
+                                    $(this).addClass('animated pulse');
+                                 }).mouseleave(function(){
+                                    $(this).removeClass('animated pulse');
+                                 });
+                              </script>
+                            <li><a href="{% url "info" biancheng.id %}">{{biancheng.title}}</a></li>
+                        </ul>
+                     <div class="panel-body">
+                        {{biancheng.content|striptags|truncatechars:300}}
+                     </div>
+                   </div>
+                </div>
+                {% endfor %}
+          </div>
+         <div class="col-md-3" id="div2">
+                     {% for suibi in blog2 %}
+                     <div class="panel-heading">
+                        <div class="panel panel-default">
+                        <ul class="list-unstyled">
+                            <li><img src="{{MEDIA_URL}}{{suibi.image}}" class="img-responsive img-rounded center-block"> </li>
+                            <script>
+                                 $("img").mouseenter(function(){
+                                    $(this).addClass('animated pulse');
+                                 }).mouseleave(function(){
+                                    $(this).removeClass('animated pulse');
+                                 });
+                              </script>
+                            <li><a href="{% url "info" suibi.id %}">{{suibi.title}}</a></li>
+                        </ul>
+                     <div class="panel-body">
+                        {{suibi.content|striptags|truncatechars:300}}
+                     </div>
+                   </div>
+                </div>
+                {% endfor %}
+             </div>
+             <div class="col-md-3" id="div3">
+                     {% for biji in blog3 %}
+                     <div class="panel-heading">
+                        <div class="panel panel-default">
+                        <ul class="list-unstyled">
+                            <li><img src="{{MEDIA_URL}}{{biji.image}}" class="img-responsive img-rounded center-block" ></li>
+                            <script>
+                                 $("img").mouseenter(function(){
+                                    $(this).addClass('animated pulse');
+                                 }).mouseleave(function(){
+                                    $(this).removeClass('animated pulse');
+                                 });
+                              </script>
+                            <li><a href="{% url "info" biji.id %}">{{biji.title}}</a></li>
+                        </ul>
+                     <div class="panel-body">
+                        {{biji.content|striptags|truncatechars:300}}
+                     </div>
+                   </div>
+                </div>
+                {% endfor %}
+             </div>
+             
+             <div class="col-md-3" id="div4">
+                     {% for ganxiang in blog4 %}
+                     <div class="panel-heading">
+                        <div class="panel panel-default">
+                        <ul class="list-unstyled">
+                            <li><img src="{{MEDIA_URL}}{{ganxiang.image}}" class="img-responsive img-rounded center-block" ></li>
+                            <script>
+                                 $("img").mouseenter(function(){
+                                    $(this).addClass('animated pulse');
+                                 }).mouseleave(function(){
+                                    $(this).removeClass('animated pulse');
+                                 });
+                              </script>
+                            <li><a href="{% url "info" ganxiang.id %}">{{ganxiang.title}}</a></li>
+                        </ul>
+                     <div class="panel-body">
+                        {{ganxiang.content|striptags|truncatechars:300}}
+                     </div>
+                   </div>
+                  </div> 
+                {% endfor %}
+</div>
+</div>  
+{% endblock %}
+
+
